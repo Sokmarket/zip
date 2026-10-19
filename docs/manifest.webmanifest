@@ -1,0 +1,25 @@
+{
+  "id": "./",
+  "name": "ELENİ Ai — Eğitim Kaynakları Atölyesi",
+  "short_name": "ELENİ Ai",
+  "description": "Sevgiyle hazırlanan eğitim kaynakları ve PDF/ZIP araçları.",
+  "lang": "tr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f3f6fb",
+  "theme_color": "#101d38",
+  "categories": [
+    "education",
+    "productivity"
+  ],
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
