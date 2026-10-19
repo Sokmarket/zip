@@ -1,0 +1,3 @@
+Bu klasor, Windows hedef bilgisayarin Python surumune uygun .whl paketleri icindir.
+Bu calisma ortaminda PyPI indirmeleri ag/DNS engeli nedeniyle yapilamadi; bu nedenle klasore sahte veya uyumsuz paket konulmadi.
+Indirmek icin interneti olan Windows bilgisayarda HAZIRLA_CEVRIMDISI.bat dosyasini calistirin.

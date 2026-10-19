@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+ciktilar/*
+!ciktilar/.gitkeep
+RAPOR_HAZIRLIK.txt
+SHA256SUMS.txt
+wheelhouse/**/*.whl
+wheelhouse/**/*.zip
+wheelhouse/**/*.tar.gz
+ocr_installer/*.exe
+ocr_installer/*.traineddata
+.DS_Store
+Thumbs.db

@@ -1,0 +1,40 @@
+EĞİTİM PDF ATÖLYESİ — ÇEVRİMDIŞI PWA PAKETİ
+============================================
+
+HIZLI BAŞLANGIÇ (WINDOWS x64)
+1. ZIP paketini tümüyle bir klasöre çıkarın.
+2. İnternetli bir Windows hazırlama bilgisayarında Python 3.11 x64 kurulu olsun.
+3. HAZIRLA_CEVRIMDISI.bat çalıştırın. Bu işlem wheelhouse klasörüne Python wheel'lerini; ocr_installer klasörüne Tesseract kurucusunu ve tur/eng/osd dil dosyalarını indirmeyi dener.
+4. RAPOR_HAZIRLIK.txt ve wheelhouse\win_amd64_py311 klasörünü kontrol edin. Gerekli wheel dosyaları yoksa çevrimdışı kurulum tamamlanamaz.
+5. Proje klasörünün tamamını hedef bilgisayara taşıyın.
+6. KURULUM_CEVRIMDISI.bat çalıştırın.
+7. baslat.bat çalıştırın; uygulama http://127.0.0.1:8767 adresinde açılır.
+8. KURULUM_KONTROL.bat ile Python paketlerini ve Tesseract durumunu doğrulayın.
+
+MİMARİ DESTEĞİ
+- Önerilen: Windows 10/11 x64 + Python 3.11 x64.
+- Windows x86 için wheelhouse\win32_py311 hazırlanması denenir. Bazı bağımlılıkların güncel 32-bit wheel'i bulunmayabilir; RAPOR_HAZIRLIK.txt ve klasör içeriği doğrulanmalıdır.
+- Sağlanan Tesseract kurucusu Windows x64 içindir. x86 OCR otomatik kurulmaz.
+- Android/iOS için yerel Python motoru bu ZIP tarafından kurulmaz. Telefon arayüzü aynı güvenilir Wi-Fi ağı üzerinden baslat_ag.bat ile açılabilir; ayrıntılar MOBIL_VE_PWA_KURULUM.txt içindedir.
+
+ÇEVRİMDIŞI DAVRANIŞ
+- Yerel dosyalar ve ZIP arşivleri çevrimdışı işlenebilir.
+- Çevrimdışı modda URL/GitHub kaynakları ve çevrimiçi çeviri kapalıdır.
+- Service Worker arayüz dosyalarını önbelleğe alır. PDF üretimi için Python sunucusu çalışıyor olmalıdır.
+- HAZIRLA_CEVRIMDISI.bat bir defa internet erişimli Windows bilgisayarda çalıştırılmalıdır; bundan sonra hazırlanmış paket çevrimdışı taşınabilir.
+
+ÖZELLİKLER
+- PDF metni sayfa sayfa çıkarılır; PDF, DOCX, PPTX, görsel ve metin/kod dosyaları desteklenir.
+- ZIP arşivlerinden desteklenen kaynak dosyaları taranır.
+- Eğitim PDF'si, işlem raporu, kaynak envanteri CSV'si ve ZIP çıktısı oluşturulur.
+- Büyük çıktılar 1 MB parçalarla indirilir; uzun HTTP işlemleri için zaman aşımı 30 dakikadır.
+- Görsel OCR için Pillow, pytesseract, Tesseract OCR ve tur/eng/osd dil verileri gerekir.
+- Bu sürüm taranmış PDF sayfalarını otomatik OCR yapmaz; OCR seçeneği ayrı görsel dosyaları içindir.
+- Özetler ve konu başlıkları sezgiseldir; yapay zekâ tarafından doğrulanmış anlamsal özet değildir.
+
+GÜVENLİK
+- baslat.bat yalnızca yerel bilgisayara (127.0.0.1) hizmet verir.
+- baslat_ag.bat yerel ağ erişimi açar ve kimlik doğrulaması sağlamaz. Yalnızca güvenilir özel Wi-Fi ağında kullanın; port yönlendirmesi yapmayın.
+- Kaynak kodu çalıştırılmaz, metin olarak işlenir. Hassas kaynakları güvenilir cihazlarda kullanın.
+
+Daha ayrıntılı kurulum, mobil erişim, PWA sınırları ve sorun giderme: MOBIL_VE_PWA_KURULUM.txt

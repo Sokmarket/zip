@@ -1,0 +1,19 @@
+{
+  "name": "Eğitim PDF Atölyesi",
+  "short_name": "PDF Atölyesi",
+  "description": "Kaynaklardan eğitim PDF'si üretin",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f3f6fb",
+  "theme_color": "#101d38",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

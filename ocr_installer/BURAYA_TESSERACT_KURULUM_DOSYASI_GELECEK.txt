@@ -1,0 +1,2 @@
+Tesseract Windows kurulum dosyasi ve tur/eng/osd traineddata dosyalari bu klasore indirilir.
+Bu calisma ortaminda ikili dosya indirme basarisiz oldu; dosyalar varmis gibi gosterilmemistir.

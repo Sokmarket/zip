@@ -1,0 +1,61 @@
+EĞİTİM PDF ATÖLYESİ — MOBİL / PWA / PC KURULUM REHBERİ
+========================================================
+
+1. ÖNEMLİ MİMARİ GERÇEĞİ
+Bu proje PDF oluşturma işini Python sunucusunda yapar. Tarayıcıdaki PWA arayüzü tek başına PDF üretim motoru değildir. Bilgisayarda Python sunucusu çalışmalıdır. Çevrimdışı PWA önbelleği arayüz dosyalarını saklar; Python motorunun yerini almaz.
+
+2. WINDOWS PC — ÖNERİLEN YOL
+- En sorunsuz hedef: Windows 10/11 x64 + Python 3.11 x64.
+- İnternetli Windows hazırlama bilgisayarında HAZIRLA_CEVRIMDISI.bat çalıştırın.
+- wheelhouse\win_amd64_py311 klasöründe gerekli .whl dosyalarının oluştuğunu kontrol edin.
+- ocr_installer klasöründe Tesseract kurucusu ile tur.traineddata, eng.traineddata ve osd.traineddata dosyalarını kontrol edin.
+- Tüm proje klasörünü çevrimdışı bilgisayara taşıyın.
+- KURULUM_CEVRIMDISI.bat çalıştırın, sonra baslat.bat çalıştırın.
+- Tarayıcıda http://127.0.0.1:8767 açılır.
+
+3. WINDOWS 32-BIT
+- Hazırlama betiği wheelhouse\win32_py311 klasörünü de hazırlamayı dener.
+- Bazı güncel Python paketleri / sürümleri 32-bit Windows için wheel yayımlamayabilir. Klasörde eksik wheel varsa 32-bit kurulum tamamlanamaz; rapor dosyasını kontrol edin.
+- Python 3.11 x86 ile uyumlu tüm bağımlılıkların mevcut olması gerekir. Gerekirse eski ve uyumlu paket sürümlerini ayrı bir gereksinim dosyasıyla sabitlemek gerekir.
+- Bu dağıtımın Tesseract yükleyicisi x64'tür. Windows 32-bit OCR bu pakette otomatik kurulmaz. OCR olmadan diğer özellikler çalışabilir.
+
+4. MOBİL TELEFON / TABLET — AYNI WI-FI ÜZERİNDEN
+- Bilgisayara kurulum yapın ve baslat_ag.bat çalıştırın. Bu mod uygulamayı yerel ağa açar.
+- Telefon ve bilgisayar aynı güvenilir özel Wi-Fi ağına bağlı olmalıdır.
+- Bilgisayarın yerel IPv4 adresini Windows'ta ipconfig komutuyla bulun (ör. 192.168.1.25).
+- Telefonda http://192.168.1.25:8767 adresini açın; örnekteki IP yerine gerçek adresinizi yazın.
+- Windows Güvenlik Duvarı sorarsa yalnızca Özel ağlar için izin verin. İnternete port yönlendirmesi yapmayın.
+- Bu yöntem mobil tarayıcıdan arayüzü kullanmayı sağlar. HTTP ve LAN IP adresi nedeniyle iOS/Android'de PWA olarak kurulum veya Service Worker çevrimdışı kurulumu garanti edilmez.
+
+5. PWA OLARAK TELEFONA KURMA
+- Tarayıcı PWA kurulumu için normalde HTTPS gerekir. localhost istisnası yalnızca aynı cihaz içindir; bilgisayarın localhost adresi telefonda localhost sayılmaz.
+- Gerçek telefon PWA kurulumu için ön yüzü HTTPS destekleyen bir sunucuda yayımlamak ve API'yi güvenli HTTPS üzerinden erişilebilir yapmak gerekir. Bu, uygulamanın yerel Python motorunu doğrudan telefona kurmaz; motorun ayrıca çalışması gerekir.
+- PWA önbelleği yalnızca arayüz dosyalarını önbelleğe alır. Uygulamanın PDF oluşturma, DOCX/PPTX okuma ve OCR işlemleri Python/Tesseract motoru tarafından yapılır.
+
+6. OCR
+- OCR yalnızca görsellerdeki metni çıkarır; Tesseract programı, pytesseract, Pillow ve dil verileri gerekir.
+- Dil dosyaları: tur (Türkçe), eng (İngilizce), osd (yön/komut dosyası tespiti).
+- Tesseract kurulumundan sonra komut isteminde tesseract --version ve tesseract --list-langs komutlarıyla kontrol edin.
+- list-langs çıktısında tur, eng ve osd görünmelidir.
+- Tarama görüntüsü içeren PDF'lerde otomatik PDF sayfası OCR bu sürümde uygulanmaz; OCR seçeneği ayrı görsel dosyaları içindir.
+
+7. ÇEVRİMDIŞI ÇALIŞMA
+- İlk kurulumdan önce wheelhouse ve OCR ikili dosyalarını hazırlayın. Sonraki kurulum internetsiz yapılabilir.
+- Çevrimdışı modda yerel dosyalar/ZIP'ler işlenir. URL, GitHub ve çevrimiçi çeviri çalışmaz.
+- İnternetli hazırlama aşamasını tamamlamadan boş wheelhouse klasörüyle çevrimdışı kurulum mümkün değildir.
+
+8. GÜVENLİK VE GİZLİLİK
+- Varsayılan baslat.bat yalnızca bilgisayarın kendisine (127.0.0.1) hizmet verir.
+- baslat_ag.bat sunucuyu yerel ağdaki cihazlara açar ve kimlik doğrulaması içermez. Yalnızca güvenilir özel ağda kullanın; halka açık Wi-Fi, kurumsal paylaşımlı ağ veya internetten erişim için kullanmayın.
+- Uygulama yüklenen kaynakların içindeki kodu çalıştırmaz; metin olarak işler. Yine de yalnızca güvenilir dosyalar kullanın.
+- Çıktılar ciktilar klasörüne kaydedilir. Hassas belgeler için cihaz güvenliğini ve klasör izinlerini koruyun.
+
+9. SORUN GİDERME
+- Paket kurulumu: doğru mimari klasörünü (win_amd64_py311 veya win32_py311) ve Python sürümünü kontrol edin.
+- Modül bulunamadı: KURULUM_CEVRIMDISI.bat dosyasını tekrar çalıştırın; ilgili wheel'in gerçekten var olduğundan emin olun.
+- Telefon erişemiyor: iki cihaz aynı Wi-Fi'da mı, IP doğru mu, 8767/TCP özel ağ için açık mı kontrol edin.
+- OCR dili bulunamıyor: Tesseract tessdata klasöründe tur/eng/osd dosyalarını ve TESSDATA_PREFIX ayarını doğrulayın.
+- Büyük belgeler: yeterli RAM ve disk alanı bırakın; işlem süresince sunucu penceresini kapatmayın.
+
+10. DESTEKLENEN ÇALIŞMA HEDEFİ
+Tam çevrimdışı, kolay ve güvenilir kurulum için birincil hedef Windows 10/11 x64 + Python 3.11 x64'tür. 32-bit Windows best-effort olarak hazırlanır ve gerçek wheel uyumluluğu indirme raporuyla doğrulanmalıdır. Android/iOS için bu paket bir yerel Python uygulaması kurmaz; telefon arayüzüne LAN üzerinden erişebilir veya ayrıca HTTPS barındırma kurulmalıdır.
