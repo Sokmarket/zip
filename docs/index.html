@@ -2,6 +2,90 @@
 <html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101d38"><title>ELENİ Ai — Eğitim Kaynakları Atölyesi</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#f3f6fb;color:#17243c;font:16px/1.5 system-ui,sans-serif}.top{background:#101d38;color:white;padding:18px max(20px,calc((100% - 850px)/2));font-weight:800}main{max-width:850px;margin:25px auto;padding:0 16px}.hero h1{font-size:clamp(2rem,6vw,3.3rem);line-height:1.1;margin:8px 0}.muted,small{color:#62718a}.panel{background:white;border:1px solid #dce4ef;border-radius:16px;padding:22px;margin:16px 0}label{display:block;font-weight:650;margin:14px 0 6px}input[type=text],input[type=file],textarea{width:100%;padding:12px;border:1px solid #dce4ef;border-radius:10px;font:inherit;background:white}button,.btn{display:inline-block;border:0;border-radius:10px;background:#2457d6;color:white;padding:12px 16px;font:inherit;font-weight:750;text-decoration:none;cursor:pointer;margin:12px 8px 0 0}.check{display:flex;gap:10px;font-weight:500}.status{white-space:pre-wrap;overflow-wrap:anywhere;color:#52627a;margin-top:12px}.warning{padding:12px;border:1px solid #f0dca5;background:#fff8e7;border-radius:10px}footer{text-align:center;color:#62718a;padding:25px}
+
+:root {
+  color-scheme: light;
+  --bg:#f3f6fb; --surface:#fff; --text:#17243c; --muted:#62718a;
+  --line:#dce4ef; --brand:#2457d6; --brand-soft:#eaf0ff;
+  --nav-bg:rgba(255,255,255,.94); --safe-bottom:env(safe-area-inset-bottom,0px);
+}
+:root[data-theme="dark"] {
+  color-scheme:dark;
+  --bg:#0b1220; --surface:#131e30; --text:#edf3ff; --muted:#a4b2c9;
+  --line:#2a3951; --brand:#8eacff; --brand-soft:#202f50;
+  --nav-bg:rgba(15,24,40,.96);
+}
+html { scroll-behavior:smooth; }
+body {
+  background:var(--bg); color:var(--text);
+  padding-bottom:calc(88px + var(--safe-bottom));
+  transition:background .2s,color .2s;
+}
+.top {
+  position:sticky; top:0; z-index:10;
+  display:flex; justify-content:space-between; align-items:center;
+  box-shadow:0 3px 16px #00000012;
+}
+main { min-height:55vh; }
+.panel,.warning { background:var(--surface); border-color:var(--line); }
+.muted,small,footer { color:var(--muted); }
+input[type=text],input[type=file],textarea {
+  background:var(--surface); color:var(--text); border-color:var(--line);
+}
+button,.btn {
+  min-height:44px; touch-action:manipulation;
+  transition:transform .16s,background .16s;
+}
+button:active,.btn:active { transform:scale(.97); }
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible {
+  outline:3px solid var(--brand); outline-offset:3px;
+}
+.app-view { min-width:0; animation:elenIn .22s ease both; }
+.app-view[hidden] { display:none !important; }
+@keyframes elenIn {
+  from { opacity:0; transform:translateX(8px); }
+  to { opacity:1; transform:translateX(0); }
+}
+.view-heading { font-size:clamp(1.7rem,6vw,2.4rem); line-height:1.15; }
+.view-lead { color:var(--muted); margin-bottom:20px; }
+.bottom-nav {
+  position:fixed; z-index:30; left:0; right:0; bottom:0;
+  display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:5px;
+  padding:8px 10px calc(8px + var(--safe-bottom));
+  background:var(--nav-bg); backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-top:1px solid var(--line);
+}
+.nav-item {
+  display:flex; flex-direction:column; align-items:center;
+  justify-content:center; gap:5px; min-width:0; min-height:58px;
+  margin:0; padding:7px 2px; border-radius:14px;
+  background:transparent; color:var(--muted);
+  font-size:.72rem; font-weight:750; line-height:1.1;
+}
+.nav-item .nav-icon { font-size:1.25rem; line-height:1.2; }
+.nav-item[aria-current="page"] { color:var(--brand); background:var(--brand-soft); }
+.setting-row {
+  display:flex; align-items:center; justify-content:space-between;
+  flex-wrap:wrap; gap:12px; padding:14px 0; border-bottom:1px solid var(--line);
+}
+.theme-actions { display:flex; flex-wrap:wrap; gap:6px; }
+.theme-actions button { margin:0; }
+@media(min-width:760px) {
+  body { padding-bottom:24px; }
+  .bottom-nav {
+    left:50%; right:auto; bottom:18px; transform:translateX(-50%);
+    width:min(520px,calc(100% - 32px));
+    border:1px solid var(--line); border-radius:22px;
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    scroll-behavior:auto!important; animation-duration:.01ms!important;
+    transition-duration:.01ms!important;
+  }
+}
+
 </style>
 <meta name="description" content="ELENİ Ai ile eğitim kaynaklarını PDF rehberlerine ve ZIP paketlerine dönüştür. Mobil uyumlu, tarayıcıda çalışan eğitim atölyesi.">
 <meta name="robots" content="index,follow,max-image-preview:large">
@@ -30,9 +114,8 @@
 }
 </script>
 
-</head><body><header class="top">ELENİ Ai · SEVGİYLE</header><main><section class="hero"><p><b>GITHUB PAGES · HTTPS</b></p><h1>Kaynaklarını eğitime dönüştür.</h1><p class="muted">PDF ve ZIP paketini doğrudan tarayıcıda oluştur. Python sunucusu gerekmez.</p></section>
-<div class="warning"><b>Bilgi:</b> Bu GitHub Pages sürümü eski Python uygulamasından ayrı, tarayıcıda çalışan temel sürümdür. Metin dosyaları ve PDF metin çıkarımı desteklenir. URL kaynakları tarayıcının CORS kurallarına takılabilir. Taranmış PDF için OCR ve eski uygulamadaki tüm gelişmiş seçenekler bu sürümde yoktur.</div>
-<section class="panel"><h2>1. Eğitim bilgileri</h2><label for="title">Eğitim başlığı</label><input id="title" type="text" value="Yeni Eğitim Rehberi"><label for="files">Kaynak dosyaları</label><input id="files" type="file" multiple accept=".txt,.md,.rst,.py,.bat,.cmd,.ps1,.sh,.js,.ts,.html,.htm,.css,.json,.xml,.yaml,.yml,.toml,.ini,.cfg,.csv,.sql,.java,.c,.h,.cpp,.cs,.go,.rs,.php,.rb,.pdf,.zip,.docx,.pptx"><p id="picked" class="muted">Dosya seçilmedi.</p><label for="urls">Web adresleri (her satıra bir tane, isteğe bağlı)</label><textarea id="urls" rows="3" placeholder="https://ornek.com"></textarea><label class="check"><input id="originals" type="checkbox" checked> Orijinal dosyaları ZIP paketine ekle</label><button id="go">PDF ve ZIP oluştur</button><button id="clear" style="background:#e6ebf4;color:#17243c">Temizle</button><div id="status" class="status" role="status" aria-live="polite"></div><div id="downloads"></div></section><section class="panel"><h2>Kullanım</h2><p class="muted">Dosyalarını seçip oluştur düğmesine bas. İşlem cihazında gerçekleşir. İlk açılışta PDF/ZIP kitaplıkları internetten yüklenir. Büyük dosyalar cihazının belleğine bağlıdır.</p></section><footer>ELENİ Ai · Eğitim kaynakları atölyesi · HTTPS</footer></main>
+</head><body><header class="top"><span>ELENİ Ai · SEVGİYLE</span><span aria-hidden="true">✦</span></header><main id="app-main"><section class="app-view" id="view-home" data-view="home" aria-labelledby="home-title"><section class="hero"><p><b>GITHUB PAGES · HTTPS</b></p><h1 id="home-title">Kaynaklarını eğitime dönüştür.</h1><p class="muted">PDF ve ZIP paketini doğrudan tarayıcıda oluştur. Python sunucusu gerekmez.</p></section>
+<div class="warning"><b>Bilgi:</b> Bu GitHub Pages sürümü eski Python uygulamasından ayrı, tarayıcıda çalışan temel sürümdür. Metin dosyaları ve PDF metin çıkarımı desteklenir. URL kaynakları tarayıcının CORS kurallarına takılabilir. Taranmış PDF için OCR ve eski uygulamadaki tüm gelişmiş seçenekler bu sürümde yoktur.</div></section><section class="app-view" id="view-atolye" data-view="atolye" aria-labelledby="workshop-title" hidden><h1 class="view-heading" id="workshop-title">Eğitim atölyesi</h1><p class="view-lead">Dosyalarını seç, PDF rehberini ve ZIP paketini oluştur.</p><section class="panel"><h2>1. Eğitim bilgileri</h2><label for="title">Eğitim başlığı</label><input id="title" type="text" value="Yeni Eğitim Rehberi"><label for="files">Kaynak dosyaları</label><input id="files" type="file" multiple accept=".txt,.md,.rst,.py,.bat,.cmd,.ps1,.sh,.js,.ts,.html,.htm,.css,.json,.xml,.yaml,.yml,.toml,.ini,.cfg,.csv,.sql,.java,.c,.h,.cpp,.cs,.go,.rs,.php,.rb,.pdf,.zip,.docx,.pptx"><p id="picked" class="muted">Dosya seçilmedi.</p><label for="urls">Web adresleri (her satıra bir tane, isteğe bağlı)</label><textarea id="urls" rows="3" placeholder="https://ornek.com"></textarea><label class="check"><input id="originals" type="checkbox" checked> Orijinal dosyaları ZIP paketine ekle</label><button id="go">PDF ve ZIP oluştur</button><button id="clear" style="background:#e6ebf4;color:#17243c">Temizle</button><div id="status" class="status" role="status" aria-live="polite"></div><div id="downloads"></div></section></section><section class="app-view" id="view-rehber" data-view="rehber" aria-labelledby="guide-title" hidden><h1 class="view-heading" id="guide-title">Kullanım rehberi</h1><p class="view-lead">Eğitim kaynaklarını düzenleme ve paketleme.</p><section class="panel"><h2>Kullanım</h2><p class="muted">Dosyalarını seçip oluştur düğmesine bas. İşlem cihazında gerçekleşir. İlk açılışta PDF/ZIP kitaplıkları internetten yüklenir. Büyük dosyalar cihazının belleğine bağlıdır.</p></section><section class="panel"><h2>Gizlilik ve uyumluluk</h2><p>Dosyalar bu tarayıcıda işlenir. Web adreslerinden veri okuma, hedef sitenin CORS politikasına bağlıdır. PDF/ZIP kitaplıkları ilk açılışta internet gerektirir.</p></section></section><section class="app-view" id="view-ayarlar" data-view="ayarlar" aria-labelledby="settings-title" hidden><h1 class="view-heading" id="settings-title">Ayarlar</h1><p class="view-lead">Uygulamanın görünümünü kişiselleştir.</p><section class="panel"><div class="setting-row"><div><strong>Görünüm</strong><p class="muted">Açık, koyu veya cihaz tercihi</p></div><div class="theme-actions"><button type="button" data-theme-choice="light" aria-pressed="false">Açık</button><button type="button" data-theme-choice="dark" aria-pressed="false">Koyu</button><button type="button" data-theme-choice="system" aria-pressed="false">Sistem</button></div></div><div class="setting-row"><div><strong>Çevrimdışı çalışma</strong><p class="muted">Uygulama kabuğu önbelleğe alınabilir; dış kitaplıklar internet isteyebilir.</p></div></div></section></section><footer>ELENİ Ai · Eğitim kaynakları atölyesi · HTTPS</footer></main><nav class="bottom-nav" aria-label="Ana gezinme"><button class="nav-item" type="button" data-nav="home" aria-current="page"><span class="nav-icon" aria-hidden="true">⌂</span><span>Ana sayfa</span></button><button class="nav-item" type="button" data-nav="atolye"><span class="nav-icon" aria-hidden="true">▤</span><span>Atölye</span></button><button class="nav-item" type="button" data-nav="rehber"><span class="nav-icon" aria-hidden="true">ⓘ</span><span>Rehber</span></button><button class="nav-item" type="button" data-nav="ayarlar"><span class="nav-icon" aria-hidden="true">⚙</span><span>Ayarlar</span></button></nav>
 <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 <script>
 (()=>{const $=id=>document.getElementById(id);let files=[];$('files').onchange=()=>{files=[...$('files').files];$('picked').textContent=files.length?files.map(f=>f.name).join(' · '):'Dosya seçilmedi.'};$('clear').onclick=()=>{files=[];$('files').value='';$('picked').textContent='Dosya seçilmedi.';$('status').textContent='';$('downloads').replaceChildren()};
@@ -98,6 +181,82 @@ $('go').onclick=async()=>{let b=$('go');b.disabled=true;$('downloads').replaceCh
     if (hero) hero.appendChild(button);
   });
   updateNetwork();
+})();
+</script>
+
+
+<script>
+(function(){
+  "use strict";
+  var views=["home","atolye","rehber","ayarlar"];
+  var main=document.getElementById("app-main");
+  var nav=Array.from(document.querySelectorAll("[data-nav]"));
+  var active="home";
+
+  function fromHash(){
+    var key=location.hash.replace(/^#\/?/,"").toLowerCase();
+    return views.indexOf(key)>=0?key:"home";
+  }
+  function render(key,push){
+    if(views.indexOf(key)<0)key="home";
+    active=key;
+    document.querySelectorAll("[data-view]").forEach(function(el){
+      var selected=el.dataset.view===key;
+      el.hidden=!selected;
+      if(selected)el.removeAttribute("aria-hidden");
+      else el.setAttribute("aria-hidden","true");
+    });
+    nav.forEach(function(el){
+      if(el.dataset.nav===key)el.setAttribute("aria-current","page");
+      else el.removeAttribute("aria-current");
+    });
+    if(push&&fromHash()!==key)history.pushState({view:key},"","#"+key);
+    var names={home:"Ana sayfa",atolye:"Eğitim atölyesi",rehber:"Kullanım rehberi",ayarlar:"Ayarlar"};
+    document.title=names[key]+" | ELENİ Ai";
+    window.scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
+  }
+  nav.forEach(function(el){
+    el.addEventListener("click",function(){render(el.dataset.nav,true);});
+  });
+  window.addEventListener("popstate",function(){render(fromHash(),false);});
+  window.addEventListener("hashchange",function(){render(fromHash(),false);});
+
+  var sx=0,sy=0;
+  if(main){
+    main.addEventListener("touchstart",function(e){
+      if(e.touches.length===1){sx=e.touches[0].clientX;sy=e.touches[0].clientY;}
+    },{passive:true});
+    main.addEventListener("touchend",function(e){
+      if(!e.changedTouches.length)return;
+      var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+      if(Math.abs(dx)<85||Math.abs(dx)<Math.abs(dy)*1.25)return;
+      var i=views.indexOf(active),n=dx<0?i+1:i-1;
+      if(n>=0&&n<views.length)render(views[n],true);
+    },{passive:true});
+  }
+
+  var media=matchMedia("(prefers-color-scheme: dark)"),theme="system";
+  function applyTheme(choice){
+    document.documentElement.dataset.theme=
+      choice==="system"?(media.matches?"dark":"light"):choice;
+    document.querySelectorAll("[data-theme-choice]").forEach(function(b){
+      b.setAttribute("aria-pressed",String(b.dataset.themeChoice===choice));
+    });
+  }
+  try{theme=localStorage.getItem("eleni-theme")||"system";}catch(e){}
+  if(["light","dark","system"].indexOf(theme)<0)theme="system";
+  applyTheme(theme);
+  document.querySelectorAll("[data-theme-choice]").forEach(function(b){
+    b.addEventListener("click",function(){
+      theme=b.dataset.themeChoice;
+      try{localStorage.setItem("eleni-theme",theme);}catch(e){}
+      applyTheme(theme);
+    });
+  });
+  if(media.addEventListener)media.addEventListener("change",function(){
+    if(theme==="system")applyTheme("system");
+  });
+  render(fromHash(),false);
 })();
 </script>
 
